@@ -1,7 +1,6 @@
 package com.dduongdev.phonebook.data
 
 import android.content.Context
-import androidx.lifecycle.viewmodel.CreationExtras
 
 interface AppContainer {
     val contactRepository : ContactRepository
@@ -9,6 +8,6 @@ interface AppContainer {
 
 class AppDataContainer(private val context: Context) : AppContainer {
     override val contactRepository : ContactRepository by lazy {
-        InMemoryContactRepository()
+        OfflineContactRepository(PhoneBookDatabase.getDatabase(context).contactDao())
     }
 }
