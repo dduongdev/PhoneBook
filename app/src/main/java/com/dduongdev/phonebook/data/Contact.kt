@@ -1,7 +1,12 @@
 package com.dduongdev.phonebook.data
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "contacts")
 data class Contact(
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     val name: String,
     val phoneNumber: String
 )

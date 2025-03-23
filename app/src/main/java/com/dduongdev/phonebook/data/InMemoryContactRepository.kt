@@ -20,17 +20,17 @@ class InMemoryContactRepository : ContactRepository {
         return _contacts.map { contacts -> contacts.find { it.id == id } }
     }
 
-    override fun save(contact: Contact) {
+    override suspend fun save(contact: Contact) {
         _contacts.value = _contacts.value + contact
     }
 
-    override fun update(contact: Contact) {
+    override suspend fun update(contact: Contact) {
         _contacts.value = _contacts.value.map {
             if (it.id == contact.id) contact else it
         }
     }
 
-    override fun delete(contact: Contact) {
+    override suspend fun delete(contact: Contact) {
         _contacts.value = _contacts.value.filterNot { it.id == contact.id }
     }
 }
