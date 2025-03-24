@@ -45,14 +45,24 @@ fun PhoneBookNavHost(
             )
         }
 
+        /**
+         * Khi [NavHostController] điều hướng đến [ContactEditScreen], nó sẽ truyền contactId dưới dạng
+         * arguments, và SavedStateHandle sẽ tự động lưu tữ giá trị này.
+         */
         composable(
             route = ContactEditDestination.routeWithArgs,
+            /**
+             * Định nghĩa các tham số động mà Composable nhận được khi điều hướng.
+             */
             arguments = listOf(navArgument(ContactEditDestination.contactIdArg) {
                 type = NavType.IntType
             })
         ) {
             ContactEditScreen(
                 navigateBack = { navController.popBackStack() },
+                /**
+                 * Nếu hệ thống sử dụng nested navigation, tự động tìm Composable là cha của Composable hiện tại trong hệ thống phân cấp để quay lại.
+                 */
                 onNavigateUp = { navController.navigateUp() }
             )
         }

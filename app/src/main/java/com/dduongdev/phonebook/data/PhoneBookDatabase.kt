@@ -13,6 +13,10 @@ abstract class PhoneBookDatabase : RoomDatabase() {
         @Volatile
         private var Instance: PhoneBookDatabase? = null
 
+        /**
+         * [context] xác định đường dẫn của tệp cơ sở dữ liệu trên thiết bị.
+         * Một số thao tác với database yêu cầu quyền truy cập vào hệ thống tệp tin, điều này được thực hiện thông qua [context].
+         */
         fun getDatabase(context: Context): PhoneBookDatabase {
             return Instance ?: synchronized(this) {
                 Room.databaseBuilder(context, PhoneBookDatabase::class.java, "contact_database")
